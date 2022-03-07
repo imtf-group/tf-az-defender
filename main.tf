@@ -1,17 +1,3 @@
-#----------------------------------------------------------
-# Current Subscription Data Resources
-#----------------------------------------------------------
-
-data "azurerm_subscription" "current" {}
-
-#----------------------------------------------------------
-# Azure Security Center Workspace Resource
-#----------------------------------------------------------
-
-resource "azurerm_security_center_workspace" "main" {
-  scope        =  data.azurerm_subscription.current.id 
-  workspace_id =  var.log_analytics_workspace_id
-}
 
 #----------------------------------------------------------
 # Azure Security Center Subscription Pricing Resources
