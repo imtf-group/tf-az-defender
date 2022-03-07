@@ -1,16 +1,4 @@
 #----------------------------------------------------------
-# Resource Group, Log Analytics Data Resources
-#----------------------------------------------------------
-data "azurerm_resource_group" "rg" {
-  name = var.resource_group_name
-}
-
-data "azurerm_log_analytics_workspace" "logws" {
-  name                = var.log_analytics_workspace_name
-  resource_group_name = data.azurerm_resource_group.rg.name
-}
-
-#----------------------------------------------------------
 # Current Subscription Data Resources
 #----------------------------------------------------------
 
@@ -21,8 +9,8 @@ data "azurerm_subscription" "current" {}
 #----------------------------------------------------------
 
 resource "azurerm_security_center_workspace" "main" {
-  scope        = var.scope_resource_id == null ? data.azurerm_subscription.current.id : var.scope_resource_id
-  workspace_id = data.azurerm_log_analytics_workspace.logws.id
+  scope        =  data.azurerm_subscription.current.id 
+  workspace_id =  var.log_analytics_workspace_id
 }
 
 #----------------------------------------------------------
