@@ -4,9 +4,11 @@
 #----------------------------------------------------------
 
 resource "azurerm_security_center_subscription_pricing" "main" {
+  for_each      = { for r in var.resource_type : r => { resource_type = r } }
   tier          = var.security_center_subscription_pricing
-  resource_type = var.resource_type
+  resource_type = each.value.resource_type
 }
+
 
 #----------------------------------------------------------
 # Azure Security Center Contact Resources

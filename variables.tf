@@ -1,4 +1,9 @@
 
+variable "resource_type" {
+  description = "The resource type this setting affects"
+  default     = ["VirtualMachines"]
+}
+
 variable "security_center_subscription_pricing" {
   description = "The pricing tier to use. Possible values are Free and Standard"
   default     = "Standard"
